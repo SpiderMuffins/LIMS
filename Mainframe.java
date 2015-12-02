@@ -4,11 +4,15 @@
  * Date:        19 November 2015
  * Class:       COMP3700
  * To Build:    javac Entities/*.java
+ *              javac Boundaries/*.java
+ *              javac UserInterface/*.java
  *              javac Mainframe.java
  * To Run:      java Mainframe
  */
 import Entities.*;
- 
+import Boundaries.*;
+import UserInterface.*;
+
 public class Mainframe
 {
     
