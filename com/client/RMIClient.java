@@ -12,17 +12,11 @@ import UserInterface.*;
 public class RMIClient {
 	
 	public static void main(String[] args) throws RemoteException, NotBoundException {
-		Registry reg = LocateRegistry.getRegistry("localhost", Constant.RMI_PORT);
+		Registry reg = LocateRegistry.getRegistry("24.94.236.72", Constant.RMI_PORT);
 		MainRemote remote = (MainRemote) reg.lookup(Constant.RMI_ID);
 		
-		HomePage firstWindow = new HomePage();
-		String[] login = firstWindow.askForLogIn();
+		HomePage index = new HomePage();
 		
-		if(remote.isLoginValid(login[0], Integer.parseInt(login[1]))) {
-			System.out.println("Hi there!");
-		} else {
-			System.out.println("Incorrect username and password. Disconnecting...");
-		}
-		
+		index.setVisible(true);
 	}
 }

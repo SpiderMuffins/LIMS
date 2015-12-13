@@ -1,0 +1,5 @@
+Customer  000000000 0000 John Doe 0.0
+Librarian 000000001 1111 
+Librarian 000000002 2222
+Customer  000000003 3333 Jane Doe 0.10
+Customer  000000004 4444 John Smith 50.0

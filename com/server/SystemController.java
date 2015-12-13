@@ -4,26 +4,69 @@ import java.sql.*;
 
 import RMIInterface.MainRemote;
 
+import Entities;
+import Entities.IOFiles;
+
 public class SystemController extends UnicastRemoteObject implements MainRemote {
 	
 	private static final long serialVersionUID = 1L;
 	public static Connection mainConn;
-
+	
+	UserDB users = new UserDB();
+	BookDB bks = new BookDB(); 
+	TransactionDB trans = new TransactionDB();
+	
+	public void addCustomer (Customer c)
+	{
+		users.addCustomer(c);
+		users.writeUDB();
+	}
+	
+	public void deleteCustomer (String acc)
+	{
+		users.deleteCustomer(acc);
+		users.writeUDB(); 
+	}
+	
+	public void addBook (Book b)
+	{
+		bks.addBook(b);
+		bks.writeBDB();
+	}
+	
+	public void deleteBook (String isbn)
+	{
+		users.deleteBook(isbn);
+		users.writeBDB(); 
+	}
+	
+	public void addTrans (Transaction t)
+	{
+		trans.addBook(b);
+		trans.writeTDB();
+	}
+	
+	public void closeTransaction (String isbn)
+	{
+		trans.closeTransaction(isbn);
+		trans.writeTDB(); 
+	}
 	
 	protected SystemController() throws RemoteException {
 		super();
 		
 		try {
-			mainConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/c9", "jayw685", "incorrectpa22");
+			mainConn = DriverManager.getConnection("jdbc:mysql://24.94.228.232:3306/lims",
+													"jpw0032", "just4Jp!");
 		} catch(SQLException sqle) {
 			sqle.getSQLState();
 		}
 	}
 	
-	public boolean isLoginValid(String username, int PIN) throws RemoteException {
-		if (username.equals("test") && PIN == 8574) {
-			return true;
-		}
+	public boolean isLoginValid(String username, String PIN) throws RemoteException {
+		Customer c = users.getCustomer(username);
+		if (c.getPin().equals(PIN))
+			return true; 
 		return false;
 	}
 	
@@ -34,7 +77,5 @@ public class SystemController extends UnicastRemoteObject implements MainRemote 
 		return myRs;
 	}
 	
-	public void fetchURL() throws RemoteException {
-		System.out.println("NYI");
-	}
+	
 }

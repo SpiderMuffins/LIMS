@@ -2,14 +2,17 @@ package Entities;
 
 public class Librarian extends Account
 {
-    int acctNumber;
-    int pin;
+    String acctNumber;
+    String pin;
     
-    public Librarian(int acN, int p)
+    public Librarian(String acN, String p)
     {
         acctNumber = acN;
         pin = p; 
     }
+    
+    public String getAcc() {return acctNumber};
+    public String getPin() {return pin};
     
     public void logIn(int pwd, int usr)
     {
@@ -28,11 +31,9 @@ public class Librarian extends Account
         return c; 
     }
     
-    public void delete(Customer c) //I think this method should be part of the data structure we use for the customer database
+    public void delete(String acc) 
     {
-        //TODO: 
-        //find c in customer database
-        //remove c. 
+        
     }
     
     public void accessAccount(String pwd, Integer usr)
@@ -56,7 +57,7 @@ public class Librarian extends Account
             //error message. 
             
         //TODO:         
-        // check for customer debt and clear     
+        // check for customer debt      
         // Update customer account
         // Update transaction (using closeTransaction() method)
     }
@@ -71,7 +72,7 @@ public class Librarian extends Account
         //TODO:    
         // create a transaction and add to TransactionDB
         // Update customer account
-        //
+        // check for customer debt (don't allow checkOut)
         
     }
 }

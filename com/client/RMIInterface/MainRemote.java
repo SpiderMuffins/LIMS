@@ -6,5 +6,4 @@ import java.rmi.RemoteException;
 public interface MainRemote extends Remote {
 	public boolean isLoginValid(String username, int PIN) throws RemoteException;
 	public boolean prepareQuery(String query) throws RemoteException;
-	public void    fetchURL() throws RemoteException;
 }
